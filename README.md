@@ -11,7 +11,7 @@ Roaring bitmaps are compressed bitmaps which tend to outperform conventional com
 # Build
 
 ## Requirements
-- PostgreSQL 10,11 or 12
+- PostgreSQL 10+
 - Other Requirements from https://github.com/RoaringBitmap/CRoaring
 
 ## Build
@@ -34,6 +34,8 @@ Roaring bitmaps are compressed bitmaps which tend to outperform conventional com
        eg：roaringbitmap.o: override CFLAGS += -march=native -std=c99
        
        ```
+
+Note:You can use `make -f Makefile_native` instead of` make` to let the compiler use the advanced instructions supported by your CPU. In some scenarios, it may double the performance. But it is dangerous if you are going to use the built binaries on different machines. For example, you could get a SIGILL crash if you run the code on an older machine which does not have some of the instructions.
 
 ## Test
 
