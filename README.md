@@ -20,6 +20,20 @@ Roaring bitmaps are compressed bitmaps which tend to outperform conventional com
 	make
 	sudo make install
 	psql -c "create extension roaringbitmap"
+	
+## Compile Error
+       ```
+       1: pre check if not install then  install:
+       postgresql12-plpython-12.5-1PGDG.rhel6.x86_64.rpm
+       postgresql12-devel-12.5-1PGDG.rhel6.x86_64.rpm
+       
+       2: make and occur follow error：
+       cc1: error: -Werror=maybe-uninitialized: No option -Wmaybe-uninitialized
+       make: *** [roaringbitmap.o] Error 1
+       solution： 将roaringbitmap.o: override CFLAGS += -march=native -std=c99 -Wno-error=maybe-uninitialized中的-Wno-error=maybe-uninitialized删除
+       eg：roaringbitmap.o: override CFLAGS += -march=native -std=c99
+       
+       ```
 
 ## Test
 
